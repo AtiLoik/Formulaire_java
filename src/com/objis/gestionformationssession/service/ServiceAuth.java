@@ -12,14 +12,10 @@ public class ServiceAuth {
 	}
 	
 	public boolean authentification(User user) {
-		boolean valid = false;
-		
-		if("Cedric".equalsIgnoreCase(user.getLogin()) && "azerty".equalsIgnoreCase(user.getPassword())) {
-			valid = true;
-		}else {
-			valid = false;
-		}
-		
-		return valid;
+		return userDAO.authentification(user.getLogin(), user.getPassword());
+	}
+	
+	public void insert(String nom, String prenom, String mail, String mdp) {
+		userDAO.insert(nom, prenom, mail, mdp);
 	}
 }

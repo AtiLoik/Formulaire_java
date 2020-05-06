@@ -9,17 +9,17 @@ import java.sql.Statement;
 
 public class UserDAO {
 
-	private String url = "jdbc:mysql://localhost/GestionFormations";
-	private String login = "root";
-	private String password = "";
-	private Connection cn = null;
-	private Statement st = null;
-	private ResultSet rs = null;
+	private String url = "jdbc:mysql://localhost/gestionformations";
+	private String sql_login = "root";
+	private String sql_password = "";
+	
 	
 	public void insert(String nom, String prenom, String mail, String mdp) {
+		Connection cn = null;
+		Statement st = null;
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			cn = DriverManager.getConnection(url, login, mdp);
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			cn = DriverManager.getConnection(url, sql_login, sql_password);
 			st = cn.createStatement();
 			
 			String sql = "INSERT INTO user (nom, prenom, mail, mdp) VALUES ('"+ nom +"', '"+ prenom +"', '"+ mail +"', '"+ mdp +"')";
@@ -41,9 +41,12 @@ public class UserDAO {
 	}
 	
 	public boolean authentification(String login, String mdp) {
+		Connection cn = null;
+		Statement st = null;
+		ResultSet rs = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			cn = DriverManager.getConnection(url, login, mdp);
+			cn = DriverManager.getConnection(url, sql_login, sql_password);
 			st = cn.createStatement();
 			
 			String sql = "SELECT * FROM user WHERE mail = '"+ login +"' AND mdp = '"+ mdp +"'";

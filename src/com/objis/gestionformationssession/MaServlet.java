@@ -54,7 +54,6 @@ public class MaServlet extends HttpServlet {
 			dispatcher = request.getRequestDispatcher("login.html");
 		}
 		
-		
 		dispatcher.forward(request, response);
 	}
 
